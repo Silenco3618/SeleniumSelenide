@@ -32,9 +32,8 @@ public class PositivesTest {
     }
 
     @Test
-    // проверка позитивного сценария
     public void shouldPositiveTest() {
-        driver.get("http://localhost:9999");
+        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Силенко Юлия");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79272573412");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
