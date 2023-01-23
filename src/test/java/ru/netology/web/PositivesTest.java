@@ -9,27 +9,35 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChromeTest {
 
-        WebDriver driver;
+    WebDriver driver;
 
-        @BeforeAll
-        static void setupAll() {
-            WebDriverManager.chromedriver().setup();
-        }
+    @BeforeAll
+    static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+    }
 
-        @BeforeEach
-        void setup() {
-            driver = new ChromeDriver();
-        }
+    @BeforeEach
+    public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
 
-        @AfterEach
-        void teardown() {
-            driver.quit();
-        }
+        //void setup() {
+        //driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
 
     @Test
     public void shouldPositiveTest() {
